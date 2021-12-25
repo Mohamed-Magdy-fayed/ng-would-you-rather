@@ -1,0 +1,61 @@
+<mat-progress-spinner mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
+<mat-card *ngIf="!loading" class='flex text-dark ff-serif card'>
+    <div class='card-header flex'>
+        <div>
+            <p class='trnuc fs-200 text-dark'>{{user && user.text}} asked:</p>
+        </div>
+        <button mat-icon-button color="accent" (click)="handleBack($event)">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <mat-card-content class='flex flow'>
+        <mat-card-content>
+            <div *ngIf="!viewed">
+                <p class='uppercase'>Would You Rather?</p>
+                <p class='fs-300 ff-sans-cond text-dark'>{{poll.optionOne.text}} or ...</p>
+                <button mat-stroked-button  color="accent" [routerLink]="['/poll', poll.id]">View</button>
+            </div>
+            <div *ngIf="viewed && answered" class='flex col text-dark'>
+                <p class="uppercase">Would You Rather?</p>
+                <div>
+                    <p>{{poll.optionOne.text}}</p>
+                    <div class='prog'>
+                        <mat-progress-bar mode="determinate" value="{{optionOneVotes/total*100}}"></mat-progress-bar>
+                    </div>
+                    <p>{{optionOneVotes}} out of {{total}} votes</p>
+                </div>
+                <div>
+                    <p>{{poll.optionTwo.text}}</p>
+                    <div class='prog'>
+                        <mat-progress-bar mode="determinate" value="{{optionTwoVotes/total*100}}"></mat-progress-bar>
+                    </div>
+                    <p>{{optionTwoVotes}} out of {{total}} votes</p>
+                </div>
+            </div>
+            <form *ngIf="viewed && !answered" class='flow' (ngSubmit)="handleSubmit($event)">
+                <div *ngIf="processing" class='grid relative'>
+                    <div>
+                        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+                    </div>
+                    <span class='fs-400 ff-serif'>Loading Data...</span>
+                </div>
+                <div *ngIf="!processing">
+                    <p class="uppercase">Would You Rather?</p>
+                    <div class='flex'>
+                        <input type='radio' id='optionOne' name='options' value={{poll.optionOne.text}}
+                            (change)="setAnswer($event)" />
+                        <label class='ff-sans-cond fs-300 text-dark' for='optionOne'>{{poll.optionOne.text}}</label>
+                    </div>
+                    <div class='flex'>
+                        <input type='radio' id='optionTwo' name='options' value={{poll.optionTwo.text}}
+                            (change)="setAnswer($event)" />
+                        <label class='ff-sans-cond fs-300 text-dark' for='optionTwo'>{{poll.optionTwo.text}}</label>
+                    </div>
+                    <button mat-stroked-button color="accent" type='submit' class="mar-top">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card-content>
+</mat-card>

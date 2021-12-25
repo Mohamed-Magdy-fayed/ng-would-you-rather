@@ -1,0 +1,18 @@
+<mat-progress-spinner mode="indeterminate" *ngIf="loading" ></mat-progress-spinner>
+<div class='fill' *ngIf="!loading" >
+    <app-nav></app-nav>
+    <mat-card class="container">
+        <mat-tab-group class="container" mat-align-tabs="center" color="accent" backgroundColor="primary">
+            <mat-tab label="Not Answered">
+                <div class="flex row cards-container">
+                    <app-poll *ngFor="let poll of allNotAnswered" [poll]="poll" [viewed]="false"></app-poll>
+                </div>
+            </mat-tab>
+            <mat-tab label="Answered">
+                <div class="flex row cards-container">
+                    <app-poll *ngFor="let poll of allAnswered" [poll]="poll" [viewed]="false"></app-poll>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

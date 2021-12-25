@@ -1,0 +1,18 @@
+<mat-card class='card text-dark ff-serif flex'>
+    <mat-card-title class='card-header'>
+        <p class='fs-400'>User Name: <span class='text-accent'>{{user.text}}</span></p>
+    </mat-card-title>
+    <mat-card-content class="flex">
+        <mat-card-content class='card-info'>
+            <div class="flex">
+                <p class='fs-300'>Answered Questions </p><span class="text-accent">{{answers}}</span>
+            </div>
+            <div class="flex">
+                <p class='fs-300'>Created Questions </p><span class="text-accent">{{questions}}</span>
+            </div>
+        </mat-card-content>
+    </mat-card-content>
+    <mat-card-footer class='card-footer'>
+        <p>Total Score <span class="text-accent">{{total}}</span></p>
+    </mat-card-footer>
+</mat-card>

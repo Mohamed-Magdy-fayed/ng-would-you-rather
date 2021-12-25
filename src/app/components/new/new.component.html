@@ -1,0 +1,36 @@
+<div class='fill container'>
+    <app-nav></app-nav>
+    <mat-card class="card text-dark flex flow container new">
+        <div class="card-header">
+            <p>Posting as {{user && user.text}}</p>
+        </div>
+        <form class='flow form text dark' (submit)="handleSubmit($event)">
+            <div class='grid relative' *ngIf="processing">
+                <div>
+                    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+                </div>
+                <span class='fs-400 ff-serif text-accent'>Submitting</span>
+            </div>
+            <div *ngIf="!processing" class="flex col">
+                <div class='form flex col'>
+                    <p class='text-dark'>Would You Rather?</p>
+                    <mat-form-field>
+                        <mat-label>Option One</mat-label>
+                        <input matInput class='fs-400 ff-sans-cond' type='text' name="optionOne"
+                            placeholder='Enter Option One' [formControl]='optionOneText' value="" required />
+                        <mat-error *ngIf="optionOneText.invalid">{{getError()}}</mat-error>
+                    </mat-form-field>
+                    <p>Or</p>
+                    <mat-form-field>
+                        <mat-label>Option One</mat-label>
+                        <input matInput class='fs-400 ff-sans-cond' type='text' name="optionTwo" placeholder='Enter Option Two'
+                            [formControl]='optionTwoText' value="" required />
+                        <mat-error *ngIf="optionTwoText.invalid">{{getError()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-stroked-button color="accent" class='button d-block fs-500 ff-serif bg-trans text-accent'
+                    type='submit'>Submit</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

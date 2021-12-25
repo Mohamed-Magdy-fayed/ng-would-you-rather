@@ -1,0 +1,26 @@
+<mat-progress-spinner mode="indeterminate" *ngIf="loading" ></mat-progress-spinner>
+<div class='container fill' *ngIf="!poll && !loading">
+    <app-nav></app-nav>
+    lol
+    <!-- <Message negative size='massive'>
+        <Message.Header>We're sorry we couldn't find this poll</Message.Header>
+        <p>Error 404 NOT FOUND</p>
+        <Button
+            labelPosition='right'
+            label='Go back'
+            icon floated='left'
+            
+            compact
+            circular
+            onClick={(e) => handleBack(e)}
+        >
+            <Icon name='left arrow' />
+        </Button>
+    </Message> -->
+</div>
+<div class='fill' *ngIf="poll">
+    <app-nav></app-nav>
+    <div class='poll-view cards-container'>
+        <app-poll [poll]="poll" [viewed]="true"></app-poll>
+    </div>
+</div>
