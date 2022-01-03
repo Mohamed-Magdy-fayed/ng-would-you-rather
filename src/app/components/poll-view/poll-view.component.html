@@ -21,6 +21,6 @@
 <div class='fill' *ngIf="poll">
     <app-nav></app-nav>
     <div class='poll-view cards-container'>
-        <app-poll [poll]="poll" [viewed]="true"></app-poll>
+        <app-poll [poll]="poll" [freshPoll]="this.freshPoll" [viewed]="true"></app-poll>
     </div>
 </div>

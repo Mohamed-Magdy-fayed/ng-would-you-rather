@@ -26,15 +26,14 @@ export class PollComponent implements OnInit {
 
   @Input() viewed: any;
   @Input() poll: any;
+  @Input() freshPoll: any;
 
   constructor(
     private auth: AuthService,
     private router: Router,
     private store: FirestoreService,
     private redirect: RedirectService
-  ) {
-    redirect.redirect()
-  }
+  ) {}
 
   ngOnInit(): void {
     this.init()
@@ -99,8 +98,15 @@ export class PollComponent implements OnInit {
 
     saveQuestionAnswer(question)
       .then(() => {
-        this.init()
         setTimeout(() => {
+          if (this.answer === 'optionOne') {
+            this.optionOneVotes += 1
+            this.total = this.optionOneVotes + this.optionTwoVotes
+          } else {
+            this.optionTwoVotes += 1
+          this.total = this.optionOneVotes + this.optionTwoVotes
+          }
+          
           this.setAnswered(true)
           this.setProcessing(false)
         }, 2000);

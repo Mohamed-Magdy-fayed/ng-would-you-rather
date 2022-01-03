@@ -31,4 +31,8 @@ export class RedirectService {
         })
     })
   }
+
+  goToHome() {
+    this.router.navigate(['/signin'])
+  }
 }

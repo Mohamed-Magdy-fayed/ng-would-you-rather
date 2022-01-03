@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
   user: any
   isExpanded: boolean = false
   isVisible: boolean = false
+  active: any = this.router.url
 
   constructor(
     private auth: AuthService,

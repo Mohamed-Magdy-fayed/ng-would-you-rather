@@ -45,6 +45,10 @@ export class PollViewComponent implements OnInit {
       })
     })
 
+    this.freshPoll()
+  }
+
+  freshPoll() {
     this.store.getQuestions()
     .then(questions => {
       this.polls = questions

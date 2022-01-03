@@ -20,18 +20,18 @@ export class HomeComponent implements OnInit {
   constructor(
     private store: FirestoreService,
     private redirect: RedirectService
-  ) {
-    redirect.redirect()
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.redirect.redirect()
     this.store.getQuestions()
-      .then(questions => {
+    .then(questions => {
         this.polls = questions
       })
     this.redirect.uid.subscribe(res => {
       this.store.getAuthedUser(res)
         .then(user => {
+
           this.currentUser = user
 
           this.polls && Object.keys(this.polls).forEach(q => {

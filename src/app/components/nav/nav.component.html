@@ -5,13 +5,13 @@
     <button (click)='toggleNav($event)' [attr.aria-expanded]="isExpanded" class='mobile-nav-toggle'><span
             class='sr-only'>Menu</span></button>
     <div [attr.data-visible]="isVisible" class='primary-navigation flex'>
-        <button mat-button routerLink='/' class='fs-300 ff-sans-cond text-dark'>
+        <button mat-button routerLink='/' class='fs-300 ff-sans-cond text-dark' [attr.aria-selected]="active === '/' ? true : false">
             Home
         </button>
-        <button mat-button routerLink='/new' class='fs-300 ff-sans-cond text-dark'>
+        <button mat-button routerLink='/new' class='fs-300 ff-sans-cond text-dark' [attr.aria-selected]="active === '/new' ? true : false">
             New Poll
         </button>
-        <button mat-button routerLink='/leaderboard' class='fs-300 ff-sans-cond text-dark'>
+        <button mat-button routerLink='/leaderboard' class='fs-300 ff-sans-cond text-dark' [attr.aria-selected]="active === '/leaderboard' ? true : false">
             Leaderboard
         </button>
         <button mat-button (click)='handleSignout()' class='fs-300 ff-sans-cond text-dark'>

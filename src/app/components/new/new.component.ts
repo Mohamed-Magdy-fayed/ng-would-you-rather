@@ -53,9 +53,6 @@ export class NewComponent implements OnInit {
   handleSubmit(event: any) {
     event.preventDefault()
 
-    console.log(this.optionOneText.value, this.optionTwoText.value);
-
-
     if (!this.optionOneText.value || !this.optionTwoText.value) {
       alert('Please add 2 options')
       return
@@ -68,9 +65,6 @@ export class NewComponent implements OnInit {
       optionOneText: this.optionOneText.value,
       optionTwoText: this.optionTwoText.value,
     }
-
-    console.log(data);
-
 
     saveQuestion(data)
       .then(() => {

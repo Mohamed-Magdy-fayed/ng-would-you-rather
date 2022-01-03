@@ -1,10 +1,10 @@
-import { app } from "./config"
+import { app } from './config'
 import { setDoc, getFirestore, addDoc, getDocs, collection, doc, getDoc } from "firebase/firestore"
 import { getAuth } from 'firebase/auth'
 
 // Initialize the FirebaseUI Widget using Firebase.
-const database = getFirestore()
-const auth = getAuth()
+const database = getFirestore(app)
+const auth = getAuth(app)
 let uid = auth.currentUser && auth.currentUser.uid
 
 export const saveQuestionAnswer = async (question: { uid: string; qid: string; answer: string }): Promise<any> => {
@@ -14,10 +14,14 @@ export const saveQuestionAnswer = async (question: { uid: string; qid: string; a
         answer: question.answer
     }
     try {
+        const q = await getDoc(doc(database, 'questions', `${obj.qid}`))
+        const arr = q.data()?.[question.answer].votes
+        arr.push(question.uid)
+        
         await setDoc(doc(database, 'questions', `${obj.qid}`),
             {
                 [obj.answer]: {
-                    votes: [obj.uid]
+                    votes: arr
                 }
             },
             { merge: true })
@@ -34,7 +38,7 @@ export const saveQuestionAnswer = async (question: { uid: string; qid: string; a
     }
 }
 
-export const saveUser = async (user: { username: any; url: any; password: any }): Promise<any> => {
+export const saveUser = async (user: { username: any; url?: any; password: any }): Promise<any> => {
     const obj = {
         text: user.username,
         value: user.username,
@@ -110,10 +114,10 @@ export const getUsers = async () => {
 
 export const getAuthedUser = async () => {
     let user: any = {}
-    try {       
+    try {
         await getDoc(doc(database, 'users', `${uid}`))
             .then((snapshot) => {
-                user = snapshot.data()                
+                user = snapshot.data()
             })
     } catch (e: any) {
         alert(e.message)
@@ -128,7 +132,7 @@ export const arraying = (object: any) => {
     const Keys = Object.keys(object)
     let array: any = []
     Keys.forEach((key) => {
-      array.push(object[key])
+        array.push(object[key])
     })
     return array
-  }
+}

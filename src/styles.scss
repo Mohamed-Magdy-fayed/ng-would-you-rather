@@ -557,3 +557,7 @@ select {
     text-overflow: ellipsis;
     line-break: anywhere;
 }
+
+.primary-navigation > *[aria-selected="true"] {
+    border: 2px solid hsl(var(--clr-light));
+}

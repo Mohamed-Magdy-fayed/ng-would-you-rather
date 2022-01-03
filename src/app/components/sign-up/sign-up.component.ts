@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
     this.auth.signup(this.email.value, this.password.value)
       .then(() => {
         this.store.saveUser(user)
-        this.redirect.redirect()
+        this.redirect.goToHome()
         this.setProcessing(false)
       })
   }
