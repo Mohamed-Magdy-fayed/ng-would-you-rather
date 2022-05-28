@@ -21,7 +21,7 @@
                     <p>{{poll.optionOne.text}}</p>
                     <div class='prog'>
                         <mat-progress-bar mode="determinate" value="{{optionOneVotes/total*100}}"></mat-progress-bar>
-                        {{optionOneVotes/total*100}}%
+                        {{(optionOneVotes/total*100).toFixed(2)}}%
                     </div>
                     <p>{{optionOneVotes}} out of {{total}} votes</p>
                 </div>
@@ -29,7 +29,7 @@
                     <p>{{poll.optionTwo.text}}</p>
                     <div class='prog'>
                         <mat-progress-bar mode="determinate" value="{{optionTwoVotes/total*100}}"></mat-progress-bar>
-                        {{optionTwoVotes/total*100}}%
+                        {{(optionTwoVotes/total*100).toFixed(2)}}%
                     </div>
                     <p>{{optionTwoVotes}} out of {{total}} votes</p>
                 </div>

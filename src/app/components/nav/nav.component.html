@@ -1,6 +1,6 @@
 <div class='primary-header flex row'>
     <div class="user-name flex row ">
-        <p class='fs-200 ff-serif'>Welcome <span class='ff-serif fs-300 text-accent'>{{user && user.value}}</span> !</p>
+        <p class='fs-200 ff-serif'>Welcome <span class='ff-serif fs-300 text-accent'>{{user && user.text}}</span> !</p>
     </div>
     <button (click)='toggleNav($event)' [attr.aria-expanded]="isExpanded" class='mobile-nav-toggle'><span
             class='sr-only'>Menu</span></button>

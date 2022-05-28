@@ -19,7 +19,6 @@ export class UserComponent implements OnInit {
       this.answers = this.user && arraying(this.user.answers).length
       this.questions = this.user && this.user.questions.length
       this.total = this.answers + this.questions
-      
     }, 1000);
   }
 
